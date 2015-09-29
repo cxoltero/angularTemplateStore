@@ -1,0 +1,32 @@
+<div>
+	<a href="#/templates">Go Back</a>
+	<br/><br/>
+	<div class="col-md-4">
+		<img class="img-full" ng-src="img/{{mainImage}}">
+		<div class="row">
+			<div ng-repeat="img in template.images | limitTo:4" >
+				<div class="col-md-3">
+					<img class="img-full" ng-src="img/{{img.name}}" ng-click="setImage(img)">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-8">
+		<h3>{{template.name}}</h3>
+		<p>{{template.description}}</p>
+		<h4>{{template.price}}</h4>
+		<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+			<input type="hidden" name="cmd" value="_xclick">
+			<input type="hidden" name="business" value="carlosh95@gmail.com">
+			<input type="hidden" name="item_name" value="{{template.name}}">
+			<input type="hidden" name="item_number" value="{{template.id}}">
+			<input type="hidden" name="currency_code" value="USD">
+			<input type="hidden" name="amount" value="{{template.price}}">
+			<input type="hidden" name="no_shipping" value='1'>
+			<input type="hidden" name="rm" value="2">
+			<input type="hidden" name="return" value="http://localhost:8000">
+			<input type="hidden" name="cancel_return" value="http://localhost:8000">
+			<input type="image" src=" 	https://www.paypalobjects.com/webstatic/en_US/btn/btn_pponly_142x27.png" name="submit" alt="Buy Now">
+		</form>
+	</div>
+</div>
